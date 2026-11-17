@@ -1,0 +1,18 @@
+{
+  "strata": 23,
+  "query_runs": 323,
+  "query_runs_config_hash_matches_current": 306,
+  "query_runs_config_match_with_date_range_recorded": 36,
+  "query_runs_config_changed_since": 17,
+  "hits_in_config_match_runs": 34258,
+  "query_runs_with_date_filter_recorded": 48,
+  "execution_window": [
+    "2026-06-27",
+    "2026-07-30"
+  ],
+  "overlap": {
+    "case_ids_extracted_under_more_than_one_stratum": 92,
+    "pmcids_with_figures_in_more_than_one_stratum": 487,
+    "handling": "case_id = PMCID + figure ID; one record per case_id kept with source precedence final > processed > processed_2017_2019 (final-corpus build script of the original collection, not included in this release); an article may contribute figures to several strata."
+  }
+}

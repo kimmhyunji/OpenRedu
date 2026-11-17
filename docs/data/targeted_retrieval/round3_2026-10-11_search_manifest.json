@@ -1,0 +1,28 @@
+{
+  "run_at": "2026-10-11T19:27:48.297689+00:00",
+  "filters": [
+    "\"open access\"[filter]",
+    "2017:2026[PDAT]"
+  ],
+  "existing_pmcids_checked": 14380,
+  "topics": {
+    "apdr_sched_0174": {
+      "label": "NM: Cardiac stress tests (SPECT and PET)",
+      "modalities": [
+        "NM_NUCLEAR"
+      ],
+      "queries": {
+        "Q1_mpi_case": {
+          "query": "(\"myocardial perfusion imaging\"[tiab] OR \"myocardial perfusion scintigraphy\"[tiab] OR \"myocardial perfusion SPECT\"[tiab] OR \"myocardial perfusion PET\"[tiab] OR \"stress myocardial perfusion\"[tiab] OR \"MPI\"[tiab] OR \"SPECT-MPI\"[tiab] OR \"nuclear stress test\"[tiab] OR \"stress-rest\"[tiab] OR \"rest-stress\"[tiab]) AND (\"SPECT\"[tiab] OR \"PET\"[tiab] OR \"scintigraphy\"[tiab] OR \"sestamibi\"[tiab] OR \"tetrofosmin\"[tiab] OR \"thallium\"[tiab] OR \"rubidium\"[tiab] OR \"Rb-82\"[tiab] OR \"ammonia\"[tiab] OR \"N-13\"[tiab] OR \"regadenoson\"[tiab] OR \"adenosine\"[tiab] OR \"dipyridamole\"[tiab]) AND (\"case report\"[tiab] OR \"case presentation\"[tiab] OR \"a case of\"[tiab] OR \"we report\"[tiab] OR \"we present\"[tiab]) AND \"open access\"[filter] AND 2017:2026[PDAT]",
+          "pmc_query_translation": "(\"myocardial perfusion imaging\"[Title/Abstract] OR \"myocardial perfusion scintigraphy\"[Title/Abstract] OR \"myocardial perfusion SPECT\"[Title/Abstract] OR \"myocardial perfusion PET\"[Title/Abstract] OR \"stress myocardial perfusion\"[Title/Abstract] OR \"MPI\"[Title/Abstract] OR \"SPECT-MPI\"[Title/Abstract] OR \"nuclear stress test\"[Title/Abstract] OR \"stress-rest\"[Title/Abstract] OR \"rest-stress\"[Title/Abstract]) AND (\"SPECT\"[Title/Abstract] OR \"PET\"[Title/Abstract] OR \"scintigraphy\"[Title/Abstract] OR \"sestamibi\"[Title/Abstract] OR \"tetrofosmin\"[Title/Abstract] OR \"thallium\"[Title/Abstract] OR \"rubidium\"[Title/Abstract] OR \"Rb-82\"[Title/Abstract] OR \"ammonia\"[Title/Abstract] OR \"N-13\"[Title/Abstract] OR \"regadenoson\"[Title/Abstract] OR \"adenosine\"[Title/Abstract] OR \"dipyridamole\"[Title/Abstract]) AND (\"case report\"[Title/Abstract] OR \"case presentation\"[Title/Abstract] OR \"a case of\"[Title/Abstract] OR \"we report\"[Title/Abstract] OR \"we present\"[Title/Abstract]) AND \"open access\"[Filter] AND 2017/01/01:2026/12/31[Date - Publication]",
+          "hits": 64,
+          "new_in_family": 64
+        }
+      },
+      "unique_hits": 64,
+      "already_in_corpus": 4,
+      "candidates": 60,
+      "sheet": "revision/outputs/gapfill_v22/candidates_apdr_sched_0174.csv"
+    }
+  }
+}

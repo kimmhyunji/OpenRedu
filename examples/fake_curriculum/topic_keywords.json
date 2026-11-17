@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "description": "Invented example in the format read by report_apdr_schedule_coverage._load_topic_keywords"
+  },
+  "entries": [
+    {
+      "schedule_entry_id": "apdr_sched_0001",
+      "canonical_topic_id": "example_topic_0000",
+      "division": "Chest",
+      "year_level": "R1",
+      "week": "Week 1",
+      "keyword_type": "must_see_diagnosis",
+      "keyword": "Pulmonary embolism",
+      "eligible": true,
+      "exclusion_category": "",
+      "exclusion_reason": "",
+      "requires_pediatric_evidence": false,
+      "phrases": [
+        "pulmonary embolism",
+        "pulmonary embolus"
+      ],
+      "n_cases": 0,
+      "status": "eligible"
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0002",
+      "canonical_topic_id": "example_topic_0001",
+      "division": "GI",
+      "year_level": "R1",
+      "week": "Week 1",
+      "keyword_type": "must_see_diagnosis",
+      "keyword": "Cholecystitis",
+      "eligible": true,
+      "exclusion_category": "",
+      "exclusion_reason": "",
+      "requires_pediatric_evidence": false,
+      "phrases": [
+        "cholecystitis"
+      ],
+      "n_cases": 0,
+      "status": "eligible"
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0003",
+      "canonical_topic_id": "example_topic_0002",
+      "division": "Neuro",
+      "year_level": "R1",
+      "week": "Week 1",
+      "keyword_type": "must_see_diagnosis",
+      "keyword": "Brain abscess",
+      "eligible": true,
+      "exclusion_category": "",
+      "exclusion_reason": "",
+      "requires_pediatric_evidence": false,
+      "phrases": [
+        "brain abscess",
+        "cerebral abscess"
+      ],
+      "n_cases": 0,
+      "status": "eligible"
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0004",
+      "canonical_topic_id": "example_topic_0003",
+      "division": "MSK",
+      "year_level": "R1",
+      "week": "Week 1",
+      "keyword_type": "must_see_diagnosis",
+      "keyword": "Scaphoid fracture",
+      "eligible": true,
+      "exclusion_category": "",
+      "exclusion_reason": "",
+      "requires_pediatric_evidence": false,
+      "phrases": [
+        "scaphoid fracture"
+      ],
+      "n_cases": 0,
+      "status": "eligible"
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0005",
+      "canonical_topic_id": "example_topic_0004",
+      "division": "US",
+      "year_level": "R1",
+      "week": "Week 1",
+      "keyword_type": "must_see_diagnosis",
+      "keyword": "Ovarian torsion",
+      "eligible": true,
+      "exclusion_category": "",
+      "exclusion_reason": "",
+      "requires_pediatric_evidence": false,
+      "phrases": [
+        "ovarian torsion",
+        "adnexal torsion"
+      ],
+      "n_cases": 0,
+      "status": "eligible"
+    }
+  ]
+}

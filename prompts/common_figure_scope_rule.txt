@@ -1,0 +1,12 @@
+
+
+STRICT TARGET-FIGURE SCOPE:
+- Extract the finding ONLY for the specific target figure identified in the Figure legend.
+- Treat the Figure legend as the highest-authority source for the finding. Use Results text
+  only when it clearly describes that same figure.
+- Do NOT import or combine findings from other figure numbers, other examinations, or
+  different time points (pre-treatment, post-treatment, or follow-up).
+- If the target figure itself contains panels from multiple time points, keep the time
+  points explicitly separated; do not merge them into one contemporaneous finding.
+- Abstract, title, keywords, and case presentation may clarify the final diagnosis, but
+  must not add imaging findings that are not shown or described for the target figure.

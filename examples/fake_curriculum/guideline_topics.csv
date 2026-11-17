@@ -1,0 +1,6 @@
+canonical_name,category,specialty,source_type
+Pulmonary embolism,Vascular,Chest,condition
+Cholecystitis,Biliary,GI,condition
+Brain abscess,Infection,Neuro,condition
+Scaphoid fracture,Trauma,MSK,condition
+Ovarian torsion,Gynecologic,US,condition

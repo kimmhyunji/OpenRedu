@@ -1,0 +1,43 @@
+{
+  "runs": [
+    {
+      "schedule_entry_id": "apdr_sched_0174",
+      "modality": "NM_NUCLEAR",
+      "pmcids": 5,
+      "started": "2026-10-11T19:29:44.093667+00:00",
+      "finished": "2026-10-11T19:30:07.125390+00:00",
+      "stats": {
+        "pmc_query_hits": 5,
+        "nxml_fetched": 5,
+        "license_passed": 5,
+        "figures_with_caption": 25,
+        "rule_exclude": 6,
+        "uncertain_rejected": 18,
+        "rule_include": 1,
+        "extraction_success": 1,
+        "unmapped": 1
+      },
+      "limit": 5
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0174",
+      "modality": "NM_NUCLEAR",
+      "pmcids": 60,
+      "started": "2026-10-11T19:32:46.805203+00:00",
+      "finished": "2026-10-11T19:54:10.515462+00:00",
+      "stats": {
+        "pmc_query_hits": 60,
+        "nxml_fetched": 60,
+        "license_passed": 60,
+        "figures_with_caption": 225,
+        "rule_exclude": 29,
+        "uncertain_rejected": 143,
+        "rule_include": 53,
+        "extraction_success": 53,
+        "unmapped": 42,
+        "mapped": 11
+      },
+      "limit": 0
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+# Central configuration for the stage scripts in pipeline/.
+# All paths are relative to the repository root. Everything under data/ is
+# runtime data that is not distributed (see docs/data_layout.md).
+
+pipeline_version: v2
+
+v1:
+  git_tag: v1-submitted            # -> 184299e
+  corpus: data/freeze/openredu_manuscript_2017_2026_scope_v2_extended/cases.jsonl
+  corpus_manifest: data/freeze/openredu_manuscript_2017_2026_scope_v2_extended/manifest.json
+  base_corpus_manifest: data/freeze/openredu_manuscript_2017_2026_v2/manifest.json
+  schedule_csv: data/curriculum/apdr_schedule_topics.csv
+  topic_phrases: data/guidelines/apdr_schedule_topic_keywords.json
+  mapping_dir: data/curriculum_mapping
+  mapping_files:
+    - apdr_schedule_coverage.json
+    - apdr_schedule_topic_results.csv
+    - apdr_schedule_exclusions.csv
+    - case_schedule_assignments.jsonl
+    - schedule_topics.jsonl
+snapshot_dir: data/outputs/v1_snapshot
+
+step1_article_type:
+  # Tiers assigned per source article (see pipeline/step1_label_article_types.py)
+  #   T1_case_report          JATS article-type = case-report or case-study, no exclusion flag
+  #   T2_case_report_flagged  JATS case-report but flagged (image corner, pictorial,
+  #                           review-only title, study-design title)
+  #   T3_possible_case_report JATS not case-report, but heading / PubMed type / title
+  #                           indicates a case report, and no exclusion flag
+  #   T4_non_case_report      everything else
+  # Policy A (adopted 2026-10-02) with T3 included. Cases are labelled, never deleted;
+  # change include_tiers to build a different corpus view.
+  include_tiers: [T1_case_report, T2_case_report_flagged, T3_possible_case_report]   # T3 and T2 included (a second-agent check found T2 29/29 single cases)
+  compare_policies:
+    A_strict: [T1_case_report]
+    A_plus_flagged: [T1_case_report, T2_case_report_flagged]
+    A_plus_possible: [T1_case_report, T3_possible_case_report]
+    lenient_all_case_signal: [T1_case_report, T2_case_report_flagged, T3_possible_case_report]
+  low_case_threshold: 5
+
+step2_verifier:
+  prompt_file: prompts/verifier/verifier_v3.md
+  prompt_version: v3   # v3 = article-level diagnosis + figure depiction (v1 smoke test and v2 development run not used for the corpus)
+  final_model: nova-pro
+  full_run_id: full_v3     # full verifier run on the assembled corpus
+  corpus_exclusion_fields: [classification, finding]   # final library rule: exclude a case whose category or finding is not_supported
+  # (the article's build applied classification first and finding as a last step: 421 + 167 cases)
+  region: us-east-1
+  inference: {temperature: 0, max_tokens: 3000}
+  max_workers_per_model: 4
+  # Non-Claude, non-Mistral candidates (development comparison). Prices: AWS Pricing API,
+  # us-east-1 on-demand, USD per 1M tokens (retrieved 2026-10-02).
+  # llama4-maverick (us.meta.llama4-maverick-17b-instruct-v1:0) dropped: account quota
+  # throttled at 4 workers; ~11 s/call at 1 worker.
+  models:
+    gpt-oss-120b:     {model_id: openai.gpt-oss-120b-1:0,                    price_in: 0.15, price_out: 0.60, extra: {reasoning_effort: low}}
+    deepseek-v3.2:    {model_id: deepseek.v3.2,                              price_in: 0.62, price_out: 1.85}
+    nova-pro:         {model_id: us.amazon.nova-pro-v1:0,                    price_in: 0.80, price_out: 3.20, max_workers: 4}
+
+step3_assertion:
+  # Matching keeps a candidate assignment (v1 Gate1-3) only when the matched condition is
+  # asserted for this figure. Statuses come from the Step 2 verifier `conditions` list when
+  # the topic phrase can be aligned to one; otherwise from the rule-based context check.
+  verifier_run: runs/full_v3/nova-pro.jsonl
+  include_suspected: true    
+  keep_depicted: ["true", "unclear"]   # keep depicted true or unclear
+  depicted_false_requires_case_not_shown: true   # policy F
+  concept_expansion: umls_synonyms   # S = UMLS synonym-expanded lexical; L (lexical only) kept as comparison
+  keep_depicted_unknown: true   # rule-only (no verifier alignment): pass if status passes
+  explicit_negation_overrides_verifier: true
+  # Revision additions to the v1 APDR topic phrase lists (v1 file unchanged; matches labelled L_revision_added).
+  # "brain death" was missing from the Brain death scintigraphy topic although it is the
+  # topic name; the technique gate (scintigraphy terms) still applies to this topic.
+  topic_phrase_additions:
+    apdr_sched_0159: ["brain death"]
+  normalized_inherits_diagnosis_context: true   # bare normalized term takes the raw-diagnosis context of the same phrase
+  verifier_unclear_status: fallback_rule   # verifier status 'unclear' -> use rule-based status
+  # Technique gate: technique-specific topics require one of these terms in the figure evidence
+  # (caption + citing sentences) or the extracted finding/diagnosis. Word-prefix match.
+  technique_terms:
+    apdr_sched_0045: [pet, fdg, suv]                                       # Chest PET-CT and PET-MRI
+    apdr_sched_0074: [mrcp, cholangiopancreatograph]                       # MR cholangiopancreatography
+    apdr_sched_0088: [fetal, fetus, pregnan, gestation, placenta, obstetric, antenatal, prenatal, intrauterine]
+    apdr_sched_0092: [urogra, mru]                                         # MR urogram
+    apdr_sched_0095: [adnex, ovar, o-rads, orads]                          # O-RADS MRI
+    apdr_sched_0151: [bone scan, bone scintigra, skeletal scintigra, whole-body bone, whole body bone, mdp, hdp, methylene diphosphonate]
+    apdr_sched_0152: [gastric emptying]
+    apdr_sched_0153: [hida, hepatobiliary scintigra, cholescintigra, mebrofenin, disofenin, iminodiacetic]
+    apdr_sched_0154: [ventilation, perfusion scintigra, perfusion scan, lung perfusion, v/q, vq scan, maa, macroaggregated]
+    apdr_sched_0155: [thyroid scan, thyroid scintigra, pertechnetate, thyroid uptake, iodine uptake, i-123, 123i, radioiodine uptake]
+    apdr_sched_0156: [sestamibi, mibi, parathyroid scintigra, parathyroid spect, choline, fluorocholine, tetrofosmin]
+    apdr_sched_0157: [tagged red, red blood cell scintigra, rbc scintigra, bleeding scintigra, meckel, pertechnetate]
+    apdr_sched_0158: ['131', radioiodine treat, radioactive iodine treat, rai treat, radioiodine therap, radioactive iodine therap, rai therap, radioiodine ablat, post-therap, post therap, posttherap, post-ablat, ablative]
+    apdr_sched_0159: [brain death, brain-death, cerebral circulatory arrest, hollow skull, absent cerebral perfusion, absence of cerebral perfusion, no intracranial]
+    apdr_sched_0160: [three-phase, three phase, 3-phase, triple-phase, triple phase, triphasic, blood pool, blood-pool, flow phase]
+    apdr_sched_0161: [mag3, mag-3, dmsa, renogra, renal scintigra, mercaptoacetyltriglycine, dimercaptosuccinic, dtpa]
+    apdr_sched_0164: [lymphoscintigra, sentinel, lymphatic mapping, tilmanocept, sulfur colloid]
+    apdr_sched_0165: [fes, fluoroestradiol, estradiol]
+    apdr_sched_0166: [dotatate, dotatoc, dotanoc, somatostatin, octreotide, dota]
+    apdr_sched_0167: [psma]
+    apdr_sched_0170: [fdg, pet]
+    apdr_sched_0171: [fdg, pet]
+    apdr_sched_0172: [fdg, pet]
+    apdr_sched_0173: [fdg, pet]
+    apdr_sched_0174: [stress, myocardial perfusion, mpi]
+    apdr_sched_0175: [fdg, pet, pyp, pyrophosphate, dpd, hmdp]
+
+step4_matching_compare:
+  topic_cui_file: data/outputs/step4/topic_phrase_cuis.json
+  relations_file: data/outputs/step4/topic_cui_relations.json
+  # UTS /relations returns labels from the related concept's side. Empirical check
+  # (2026-10-02, C0848377 "trauma to the abdomen"): PAR -> "Blunt injury of abdomen",
+  # RB -> narrower variants; CHD -> broader parents. So narrower concepts = PAR, RB.
+  narrower_labels: [PAR, RB]
+  hierarchy_depth: 1          # H: case CUI may be a direct narrower concept of a topic CUI
+  case_cui_field: diagnosis_cuis
+
+gapfill_v21:
+  # Targeted retrieval round 2 (2026-10-02): fill the 4 topics that had no linked cases.
+  # Same procedure as the earlier supplementary retrieval (round 1, July 20-30, 2026; scripts not included in this release): topic query family ->
+  # dedupe against every existing corpus -> standard extraction pipeline into an isolated directory (new
+  # freeze; existing freeze corpora untouched) -> article type -> verifier -> Step 3 -> v2.1.
+  # PMC syntax checked 2026-10-02 (esearch QueryTranslation): per-term tags work ("x"[tiab]); a tag on a
+  # parenthesised group ("a" OR "b")[tiab] and "case report"[pt] are NOT honored by PMC (become [All Fields]).
+  # Queries are therefore built term by term from the lists below: AND across groups, OR within a group.
+  out_dir: data/outputs/gapfill_v21
+  date_filter: 2017:2026[PDAT]
+  access_filter: '"open access"[filter]'
+  groups:
+    case_report: {field: tiab, terms: ["case report", "case presentation", "a case of", "we report", "we present"]}
+    imaging: {field: tiab, terms: [ultrasound, ultrasonography, sonography, CT, "computed tomography", MRI, "magnetic resonance", radiograph, imaging]}
+    pediatric: {field: tiab, terms: [child, children, pediatric, paediatric, infant, neonate, neonatal, newborn, boy, girl, adolescent]}
+    ultrasound: {field: tiab, terms: [ultrasound, ultrasonography, sonography, sonographic, "color Doppler"]}
+  topics:
+    apdr_sched_0119:
+      label: "Breast: Breast cancer risk assessment / BRCA-associated cancers"
+      modalities: [MAMMOGRAM, BREAST_MRI, BREAST_ULTRASOUND]
+      queries:
+        Q1_brca_breast_imaging:
+          - {field: tiab, terms: [BRCA1, BRCA2, BRCA, "BRCA mutation", "BRCA carrier", PALB2, "hereditary breast", "hereditary breast and ovarian cancer"]}
+          - {field: tiab, terms: [breast]}
+          - {field: tiab, terms: [mammography, mammogram, mammographic, "breast MRI", "breast magnetic resonance", "breast ultrasound", tomosynthesis]}
+          # no case_report group: 18 -> 142 articles; article type is checked in Step 1 anyway
+    apdr_sched_0131:
+      label: "US: Neck and chest ultrasound"
+      modalities: [US_SUPERFICIAL]
+      queries:
+        Q1_thyroid_neck_us:
+          - {field: ti, terms: ["thyroid nodule", thyroiditis, "thyroid cyst", "thyroid mass", "thyroid lesion", "neck mass", "salivary gland", parotid, submandibular, "cervical lymph node"]}
+          - ultrasound
+          - case_report
+        Q2_chest_us:
+          - {field: ti, terms: ["pleural effusion", "lung ultrasound", "chest ultrasound", "thoracic ultrasound", "pleural ultrasound", "point-of-care ultrasound"]}
+          - ultrasound
+          - case_report
+    apdr_sched_0159:
+      label: "NM: Brain death scintigraphy"
+      modalities: [NM_NUCLEAR]
+      queries:
+        Q1_brain_death_nm:
+          - {field: tiab, terms: ["brain death", "brain-death", "cerebral circulatory arrest", "death by neurologic criteria"]}
+          - {field: tiab, terms: [scintigraphy, SPECT, "perfusion scan", radionuclide, HMPAO, ECD, "nuclear medicine", "cerebral perfusion", "flow study", "Tc-99m", "99mTc"]}
+    apdr_sched_0184:
+      label: "Peds: Head and neck imaging"
+      modalities: [CT_BRAIN, MRI_BRAIN, US_SUPERFICIAL]
+      queries:
+        Q1_peds_neck_congenital:
+          - {field: ti, terms: ["thyroglossal duct cyst", "branchial cleft", "branchial cyst", "cystic hygroma", "lymphatic malformation", "cervical lymphadenitis", "retropharyngeal abscess", "fibromatosis colli", "neck mass"]}
+          - pediatric
+          - imaging
+          - case_report
+        Q2_peds_neck_tumor:
+          - {field: ti, terms: [rhabdomyosarcoma, neuroblastoma, teratoma, "infantile hemangioma"]}
+          - {field: tiab, terms: [neck, "head and neck", cervical, parotid, orbit, orbital]}
+          - pediatric
+          - imaging
+          - case_report
+
+gapfill_v22:
+  # Targeted retrieval round 3 (2026-10-11): one fixed query family for the cardiac stress test topic.
+  out_dir: data/outputs/gapfill_v22
+  date_filter: 2017:2026[PDAT]
+  access_filter: '"open access"[filter]'
+  base_labels: data/outputs/gapfill_v21/step1_view/case_article_labels.jsonl
+  dedupe_corpora:
+    - data/outputs/step6_figure_scope/cases.jsonl
+    - data/outputs/gapfill_v21/gapfill_cases_casereport.jsonl
+  groups:
+    case_report: {field: tiab, terms: ["case report", "case presentation", "a case of", "we report", "we present"]}
+  topics:
+    apdr_sched_0174:
+      label: "NM: Cardiac stress tests (SPECT and PET)"
+      modalities: [NM_NUCLEAR]
+      queries:
+        Q1_mpi_case:
+          - {field: tiab, terms: ["myocardial perfusion imaging", "myocardial perfusion scintigraphy", "myocardial perfusion SPECT", "myocardial perfusion PET", "stress myocardial perfusion", "MPI", "SPECT-MPI", "nuclear stress test", "stress-rest", "rest-stress"]}
+          - {field: tiab, terms: ["SPECT", "PET", "scintigraphy", "sestamibi", "tetrofosmin", "thallium", "rubidium", "Rb-82", "ammonia", "N-13", "regadenoson", "adenosine", "dipyridamole"]}
+          - case_report
+
+update_2026q3:
+  # Prospective update: articles with publication dates 2026-07-01 to 2026-10-19 that were not in any
+  # corpus version, retrieved with the 23 original category queries and processed with the current v2.2 pipeline.
+  # The window overlaps the original collection runs (2026-06-27 to 2026-07-30).
+  out_dir: data/outputs/update_2026q3_v1
+  date_filter: 2026/07/01:2026/10/19[PDAT]
+  queries: data/outputs/step5/query_disclosure/queries.json   # query_without_date_clause per category
+  dedupe_corpora:
+    - data/outputs/v2_2_input/cases.jsonl
+    - data/outputs/step6_figure_scope/cases.jsonl
+    - data/outputs/gapfill_v21/gapfill_cases_all.jsonl
+    - data/outputs/gapfill_v22/gapfill_cases_all.jsonl
+  base_corpus: data/outputs/v2_2_input/cases.jsonl
+  base_labels: data/outputs/v2_2_input/case_article_labels.jsonl
+  base_verifier: data/outputs/step2/runs/full_v3_v22_final/nova-pro.jsonl
+  verifier_run_id: update_2026q3_v1
+  freeze_dir: data/freeze/openredu_update_2026q3_v1
+
+build:
+  # Settings for pipeline/build_library.py (build a new case library). Paths are relative to the repository root.
+  out_dir: data/library
+  date_filter: 2017:2026[PDAT]                      # PMC publication-date window
+  queries: docs/data/retrieval/queries.json         # the 23 category queries of the article
+  categories: []                                    # empty = all 23; or a list such as [CXR, CT_CHEST]
+  skip_articles_in: []                              # cases.jsonl of earlier libraries; their articles are skipped (updates)
+  verifier_run_id: library_v1                       # verifier calls go to data/outputs/step2/runs/<id>/

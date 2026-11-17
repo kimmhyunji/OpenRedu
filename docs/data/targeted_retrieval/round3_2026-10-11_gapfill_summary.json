@@ -1,0 +1,41 @@
+{
+  "topics": {
+    "apdr_sched_0174": {
+      "candidates_pmcids": 60,
+      "pipeline_stats": [
+        {
+          "schedule_entry_id": "apdr_sched_0174",
+          "modality": "NM_NUCLEAR",
+          "pmcids": 60,
+          "started": "2026-10-11T19:32:46.805203+00:00",
+          "finished": "2026-10-11T19:54:10.515462+00:00",
+          "stats": {
+            "pmc_query_hits": 60,
+            "nxml_fetched": 60,
+            "license_passed": 60,
+            "figures_with_caption": 225,
+            "rule_exclude": 29,
+            "uncertain_rejected": 143,
+            "rule_include": 53,
+            "extraction_success": 53,
+            "unmapped": 42,
+            "mapped": 11
+          },
+          "limit": 0
+        }
+      ],
+      "extracted": 53,
+      "duplicate_or_existing": 0,
+      "license_excluded": 0,
+      "after_article_type": 33
+    }
+  },
+  "gapfill_cases_extracted_unique": 53,
+  "gapfill_cases_after_article_type": 33,
+  "tiers": {
+    "T4_non_case_report": 20,
+    "T1_case_report": 23,
+    "T2_case_report_flagged": 1,
+    "T3_possible_case_report": 9
+  }
+}

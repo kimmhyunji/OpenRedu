@@ -1,0 +1,6 @@
+division,year_level,week,keyword_type,keyword
+Chest,R1,Week 1,must_see_diagnosis,Pulmonary embolism
+GI,R1,Week 2,must_see_diagnosis,Cholecystitis
+Neuro,R2,Week 1,must_see_diagnosis,Brain abscess
+MSK,R2,Week 2,must_see_diagnosis,Scaphoid fracture
+US,R3,Week 1,must_see_diagnosis,Ovarian torsion

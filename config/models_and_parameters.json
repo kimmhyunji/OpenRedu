@@ -1,0 +1,34 @@
+{
+  "models": {
+    "extraction_primary": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "extraction_middle": "mistral.mistral-large-3-675b-instruct",
+    "extraction_escalate": "us.anthropic.claude-sonnet-4-6",
+    "classification_adjudicate": "us.anthropic.claude-sonnet-4-6",
+    "standardization_llm": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "mapping_adjudicate": "us.anthropic.claude-sonnet-4-6",
+    "guideline_structuring": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "gap_prioritization": "us.anthropic.claude-haiku-4-5-20251001-v1:0"
+  },
+  "call_parameters": {
+    "provider": "AWS Bedrock invoke_model",
+    "max_tokens": 400,
+    "temperature": "not set (provider default)",
+    "top_p": "not set (provider default)"
+  },
+  "retry_and_fallback": [
+    "Primary model (Claude Haiku 4.5) up to 3 attempts with exponential backoff on error or schema-invalid output",
+    "then middle tier (Mistral Large 3) once, then escalate (Claude Sonnet 4.6) once; else extraction failure",
+    "Master branch 6: invalid extraction after cascade -> forced Sonnet re-extraction; still invalid -> drop",
+    "Master branch 8: self-check (Haiku, diagnosis vs first 500 caption chars) explicit mismatch -> one forced Sonnet re-extraction; the case is accepted regardless of the second self-check result"
+  ],
+  "code_refs": [
+    "src/openredu/core/llm.py llm_with_escalation",
+    "src/openredu/agents/curation/master.py",
+    "src/openredu/agents/curation/subagents/extraction.py"
+  ],
+  "not_recorded_per_case": [
+    "number of attempts",
+    "token usage",
+    "latency"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "description": "Figure identifiers and QC exclusion decisions underlying Supplementary Table S2; no images, extracted clinical text or participant records.",
+  "source_artifact": "removed_case_ledger.csv (historical QC compilation)",
+  "source_sha256": "3f9f0bbf9b4564d63aaf1449904a2b489ed624cc1ce6e2c39d1ef3adbd0246f9",
+  "released_sha256": "bc28034a517ba79f9217f8816b9cc6effed43cb7477ada354223cf1ecd70cf6b",
+  "records": 1138,
+  "recoding": {
+    "count": 135,
+    "original_reason_code": "reason_not_recorded",
+    "published_reason_code": "manual_corpus_review_non_radiologic_figure",
+    "basis": "Retrospective group category used in the published aggregate summary and QC methods documentation. Original per-figure detailed reasons were not retained; no finer subtype or independent re-adjudication is asserted."
+  }
+}

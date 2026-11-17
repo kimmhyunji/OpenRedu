@@ -1,0 +1,178 @@
+{
+  "runs": [
+    {
+      "schedule_entry_id": "apdr_sched_0159",
+      "modality": "NM_NUCLEAR",
+      "pmcids": 5,
+      "started": "2026-10-02T20:39:26.750040+00:00",
+      "finished": "2026-10-02T20:39:43.086336+00:00",
+      "stats": {
+        "pmc_query_hits": 5,
+        "nxml_fetched": 5,
+        "license_passed": 5,
+        "figures_with_caption": 28,
+        "rule_exclude": 2,
+        "uncertain_rejected": 25,
+        "rule_include": 1,
+        "extraction_success": 1,
+        "mapped": 1
+      },
+      "limit": 5
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0159",
+      "modality": "NM_NUCLEAR",
+      "pmcids": 42,
+      "started": "2026-10-02T20:39:57.980709+00:00",
+      "finished": "2026-10-02T20:45:01.507927+00:00",
+      "stats": {
+        "pmc_query_hits": 42,
+        "nxml_fetched": 37,
+        "license_passed": 37,
+        "figures_with_caption": 119,
+        "uncertain_rejected": 80,
+        "rule_include": 17,
+        "extraction_success": 17,
+        "unmapped": 14,
+        "rule_exclude": 22,
+        "mapped": 3
+      },
+      "limit": 0
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0119",
+      "modality": "MAMMOGRAM",
+      "pmcids": 136,
+      "started": "2026-10-02T20:45:01.915307+00:00",
+      "finished": "2026-10-02T20:59:11.576801+00:00",
+      "stats": {
+        "pmc_query_hits": 136,
+        "nxml_fetched": 126,
+        "license_passed": 125,
+        "figures_with_caption": 314,
+        "rule_exclude": 108,
+        "uncertain_rejected": 164,
+        "rule_include": 42,
+        "extraction_failed": 21,
+        "extraction_success": 21,
+        "mapped": 18,
+        "unmapped": 3
+      },
+      "limit": 0
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0119",
+      "modality": "BREAST_MRI",
+      "pmcids": 136,
+      "started": "2026-10-02T20:59:11.577106+00:00",
+      "finished": "2026-10-02T21:02:13.161180+00:00",
+      "stats": {
+        "pmc_query_hits": 136,
+        "nxml_fetched": 133,
+        "license_passed": 132,
+        "figures_with_caption": 339,
+        "rule_exclude": 111,
+        "uncertain_rejected": 221,
+        "rule_include": 7,
+        "extraction_success": 7,
+        "unmapped": 5,
+        "mapped": 2
+      },
+      "limit": 0
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0119",
+      "modality": "BREAST_ULTRASOUND",
+      "pmcids": 136,
+      "started": "2026-10-02T21:02:13.161488+00:00",
+      "finished": "2026-10-02T21:04:15.033120+00:00",
+      "stats": {
+        "pmc_query_hits": 136,
+        "nxml_fetched": 133,
+        "license_passed": 132,
+        "figures_with_caption": 341,
+        "rule_exclude": 130,
+        "uncertain_rejected": 211
+      },
+      "limit": 0
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0184",
+      "modality": "CT_BRAIN",
+      "pmcids": 159,
+      "started": "2026-10-02T21:04:15.440706+00:00",
+      "finished": "2026-10-02T21:07:14.862932+00:00",
+      "stats": {
+        "pmc_query_hits": 159,
+        "nxml_fetched": 159,
+        "license_passed": 159,
+        "figures_with_caption": 622,
+        "uncertain_rejected": 466,
+        "rule_exclude": 154,
+        "rule_include": 2,
+        "extraction_success": 2,
+        "mapped": 2
+      },
+      "limit": 0
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0184",
+      "modality": "MRI_BRAIN",
+      "pmcids": 159,
+      "started": "2026-10-02T21:07:14.863274+00:00",
+      "finished": "2026-10-02T21:10:54.319766+00:00",
+      "stats": {
+        "pmc_query_hits": 159,
+        "nxml_fetched": 159,
+        "license_passed": 159,
+        "figures_with_caption": 622,
+        "uncertain_rejected": 451,
+        "rule_exclude": 161,
+        "rule_include": 10,
+        "extraction_success": 10,
+        "unmapped": 9,
+        "mapped": 1
+      },
+      "limit": 0
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0184",
+      "modality": "US_SUPERFICIAL",
+      "pmcids": 159,
+      "started": "2026-10-02T21:10:54.320137+00:00",
+      "finished": "2026-10-02T21:13:20.421744+00:00",
+      "stats": {
+        "pmc_query_hits": 159,
+        "nxml_fetched": 159,
+        "license_passed": 159,
+        "figures_with_caption": 613,
+        "uncertain_rejected": 490,
+        "rule_exclude": 122,
+        "rule_include": 1,
+        "extraction_success": 1,
+        "unmapped": 1
+      },
+      "limit": 0
+    },
+    {
+      "schedule_entry_id": "apdr_sched_0131",
+      "modality": "US_SUPERFICIAL",
+      "pmcids": 789,
+      "started": "2026-10-02T21:13:20.842697+00:00",
+      "finished": "2026-10-02T21:32:19.129215+00:00",
+      "stats": {
+        "pmc_query_hits": 789,
+        "nxml_fetched": 781,
+        "license_passed": 765,
+        "figures_with_caption": 2224,
+        "uncertain_rejected": 1902,
+        "rule_exclude": 280,
+        "rule_include": 42,
+        "extraction_success": 42,
+        "unmapped": 37,
+        "mapped": 5
+      },
+      "limit": 0
+    }
+  ]
+}

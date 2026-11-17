@@ -1,0 +1,98 @@
+{
+  "run_at": "2026-10-02T20:36:05.570722+00:00",
+  "filters": [
+    "\"open access\"[filter]",
+    "2017:2026[PDAT]"
+  ],
+  "existing_pmcids_checked": 14332,
+  "topics": {
+    "apdr_sched_0119": {
+      "label": "Breast: Breast cancer risk assessment / BRCA-associated cancers",
+      "modalities": [
+        "MAMMOGRAM",
+        "BREAST_MRI",
+        "BREAST_ULTRASOUND"
+      ],
+      "queries": {
+        "Q1_brca_breast_imaging": {
+          "query": "(\"BRCA1\"[tiab] OR \"BRCA2\"[tiab] OR \"BRCA\"[tiab] OR \"BRCA mutation\"[tiab] OR \"BRCA carrier\"[tiab] OR \"PALB2\"[tiab] OR \"hereditary breast\"[tiab] OR \"hereditary breast and ovarian cancer\"[tiab]) AND (\"breast\"[tiab]) AND (\"mammography\"[tiab] OR \"mammogram\"[tiab] OR \"mammographic\"[tiab] OR \"breast MRI\"[tiab] OR \"breast magnetic resonance\"[tiab] OR \"breast ultrasound\"[tiab] OR \"tomosynthesis\"[tiab]) AND \"open access\"[filter] AND 2017:2026[PDAT]",
+          "pmc_query_translation": "(\"BRCA1\"[Title/Abstract] OR \"BRCA2\"[Title/Abstract] OR \"BRCA\"[Title/Abstract] OR \"BRCA mutation\"[Title/Abstract] OR \"BRCA carrier\"[Title/Abstract] OR \"PALB2\"[Title/Abstract] OR \"hereditary breast\"[Title/Abstract] OR \"hereditary breast and ovarian cancer\"[Title/Abstract]) AND \"breast\"[Title/Abstract] AND (\"mammography\"[Title/Abstract] OR \"mammogram\"[Title/Abstract] OR \"mammographic\"[Title/Abstract] OR \"breast MRI\"[Title/Abstract] OR \"breast magnetic resonance\"[Title/Abstract] OR \"breast ultrasound\"[Title/Abstract] OR \"tomosynthesis\"[Title/Abstract]) AND \"open access\"[Filter] AND 2017/01/01:2026/12/31[Date - Publication]",
+          "hits": 142,
+          "new_in_family": 142
+        }
+      },
+      "unique_hits": 142,
+      "already_in_corpus": 6,
+      "candidates": 136,
+      "sheet": "revision/outputs/gapfill_v21/candidates_apdr_sched_0119.csv"
+    },
+    "apdr_sched_0131": {
+      "label": "US: Neck and chest ultrasound",
+      "modalities": [
+        "US_SUPERFICIAL"
+      ],
+      "queries": {
+        "Q1_thyroid_neck_us": {
+          "query": "(\"thyroid nodule\"[ti] OR \"thyroiditis\"[ti] OR \"thyroid cyst\"[ti] OR \"thyroid mass\"[ti] OR \"thyroid lesion\"[ti] OR \"neck mass\"[ti] OR \"salivary gland\"[ti] OR \"parotid\"[ti] OR \"submandibular\"[ti] OR \"cervical lymph node\"[ti]) AND (\"ultrasound\"[tiab] OR \"ultrasonography\"[tiab] OR \"sonography\"[tiab] OR \"sonographic\"[tiab] OR \"color Doppler\"[tiab]) AND (\"case report\"[tiab] OR \"case presentation\"[tiab] OR \"a case of\"[tiab] OR \"we report\"[tiab] OR \"we present\"[tiab]) AND \"open access\"[filter] AND 2017:2026[PDAT]",
+          "pmc_query_translation": "(\"thyroid nodule\"[Title] OR \"thyroiditis\"[Title] OR \"thyroid cyst\"[Title] OR \"thyroid mass\"[Title] OR \"thyroid lesion\"[Title] OR \"neck mass\"[Title] OR \"salivary gland\"[Title] OR \"parotid\"[Title] OR \"submandibular\"[Title] OR \"cervical lymph node\"[Title]) AND (\"ultrasound\"[Title/Abstract] OR \"ultrasonography\"[Title/Abstract] OR \"sonography\"[Title/Abstract] OR \"sonographic\"[Title/Abstract] OR \"color Doppler\"[Title/Abstract]) AND (\"case report\"[Title/Abstract] OR \"case presentation\"[Title/Abstract] OR \"a case of\"[Title/Abstract] OR \"we report\"[Title/Abstract] OR \"we present\"[Title/Abstract]) AND \"open access\"[Filter] AND 2017/01/01:2026/12/31[Date - Publication]",
+          "hits": 362,
+          "new_in_family": 362
+        },
+        "Q2_chest_us": {
+          "query": "(\"pleural effusion\"[ti] OR \"lung ultrasound\"[ti] OR \"chest ultrasound\"[ti] OR \"thoracic ultrasound\"[ti] OR \"pleural ultrasound\"[ti] OR \"point-of-care ultrasound\"[ti]) AND (\"ultrasound\"[tiab] OR \"ultrasonography\"[tiab] OR \"sonography\"[tiab] OR \"sonographic\"[tiab] OR \"color Doppler\"[tiab]) AND (\"case report\"[tiab] OR \"case presentation\"[tiab] OR \"a case of\"[tiab] OR \"we report\"[tiab] OR \"we present\"[tiab]) AND \"open access\"[filter] AND 2017:2026[PDAT]",
+          "pmc_query_translation": "(\"pleural effusion\"[Title] OR \"lung ultrasound\"[Title] OR \"chest ultrasound\"[Title] OR \"thoracic ultrasound\"[Title] OR \"pleural ultrasound\"[Title] OR \"point-of-care ultrasound\"[Title]) AND (\"ultrasound\"[Title/Abstract] OR \"ultrasonography\"[Title/Abstract] OR \"sonography\"[Title/Abstract] OR \"sonographic\"[Title/Abstract] OR \"color Doppler\"[Title/Abstract]) AND (\"case report\"[Title/Abstract] OR \"case presentation\"[Title/Abstract] OR \"a case of\"[Title/Abstract] OR \"we report\"[Title/Abstract] OR \"we present\"[Title/Abstract]) AND \"open access\"[Filter] AND 2017/01/01:2026/12/31[Date - Publication]",
+          "hits": 460,
+          "new_in_family": 460
+        }
+      },
+      "unique_hits": 822,
+      "already_in_corpus": 33,
+      "candidates": 789,
+      "sheet": "revision/outputs/gapfill_v21/candidates_apdr_sched_0131.csv"
+    },
+    "apdr_sched_0159": {
+      "label": "NM: Brain death scintigraphy",
+      "modalities": [
+        "NM_NUCLEAR"
+      ],
+      "queries": {
+        "Q1_brain_death_nm": {
+          "query": "(\"brain death\"[tiab] OR \"brain-death\"[tiab] OR \"cerebral circulatory arrest\"[tiab] OR \"death by neurologic criteria\"[tiab]) AND (\"scintigraphy\"[tiab] OR \"SPECT\"[tiab] OR \"perfusion scan\"[tiab] OR \"radionuclide\"[tiab] OR \"HMPAO\"[tiab] OR \"ECD\"[tiab] OR \"nuclear medicine\"[tiab] OR \"cerebral perfusion\"[tiab] OR \"flow study\"[tiab] OR \"Tc-99m\"[tiab] OR \"99mTc\"[tiab]) AND \"open access\"[filter] AND 2017:2026[PDAT]",
+          "pmc_query_translation": "(\"brain-death\"[Title/Abstract] OR \"brain-death\"[Title/Abstract] OR \"cerebral circulatory arrest\"[Title/Abstract] OR \"death by neurologic criteria\"[Title/Abstract]) AND (\"scintigraphy\"[Title/Abstract] OR \"SPECT\"[Title/Abstract] OR \"perfusion scan\"[Title/Abstract] OR \"radionuclide\"[Title/Abstract] OR \"HMPAO\"[Title/Abstract] OR \"ECD\"[Title/Abstract] OR \"nuclear medicine\"[Title/Abstract] OR \"cerebral perfusion\"[Title/Abstract] OR \"flow study\"[Title/Abstract] OR \"Tc-99m\"[Title/Abstract] OR \"99mTc\"[Title/Abstract]) AND \"open access\"[Filter] AND 2017/01/01:2026/12/31[Date - Publication]",
+          "hits": 45,
+          "new_in_family": 45
+        }
+      },
+      "unique_hits": 45,
+      "already_in_corpus": 3,
+      "candidates": 42,
+      "sheet": "revision/outputs/gapfill_v21/candidates_apdr_sched_0159.csv"
+    },
+    "apdr_sched_0184": {
+      "label": "Peds: Head and neck imaging",
+      "modalities": [
+        "CT_BRAIN",
+        "MRI_BRAIN",
+        "US_SUPERFICIAL"
+      ],
+      "queries": {
+        "Q1_peds_neck_congenital": {
+          "query": "(\"thyroglossal duct cyst\"[ti] OR \"branchial cleft\"[ti] OR \"branchial cyst\"[ti] OR \"cystic hygroma\"[ti] OR \"lymphatic malformation\"[ti] OR \"cervical lymphadenitis\"[ti] OR \"retropharyngeal abscess\"[ti] OR \"fibromatosis colli\"[ti] OR \"neck mass\"[ti]) AND (\"child\"[tiab] OR \"children\"[tiab] OR \"pediatric\"[tiab] OR \"paediatric\"[tiab] OR \"infant\"[tiab] OR \"neonate\"[tiab] OR \"neonatal\"[tiab] OR \"newborn\"[tiab] OR \"boy\"[tiab] OR \"girl\"[tiab] OR \"adolescent\"[tiab]) AND (\"ultrasound\"[tiab] OR \"ultrasonography\"[tiab] OR \"sonography\"[tiab] OR \"CT\"[tiab] OR \"computed tomography\"[tiab] OR \"MRI\"[tiab] OR \"magnetic resonance\"[tiab] OR \"radiograph\"[tiab] OR \"imaging\"[tiab]) AND (\"case report\"[tiab] OR \"case presentation\"[tiab] OR \"a case of\"[tiab] OR \"we report\"[tiab] OR \"we present\"[tiab]) AND \"open access\"[filter] AND 2017:2026[PDAT]",
+          "pmc_query_translation": "(\"thyroglossal duct cyst\"[Title] OR \"branchial cleft\"[Title] OR \"branchial cyst\"[Title] OR \"cystic hygroma\"[Title] OR \"lymphatic malformation\"[Title] OR \"cervical lymphadenitis\"[Title] OR \"retropharyngeal abscess\"[Title] OR \"fibromatosis colli\"[Title] OR \"neck mass\"[Title]) AND (\"child\"[Title/Abstract] OR \"children\"[Title/Abstract] OR \"pediatric\"[Title/Abstract] OR \"paediatric\"[Title/Abstract] OR \"infant\"[Title/Abstract] OR \"neonate\"[Title/Abstract] OR \"neonatal\"[Title/Abstract] OR \"newborn\"[Title/Abstract] OR \"boy\"[Title/Abstract] OR \"girl\"[Title/Abstract] OR \"adolescent\"[Title/Abstract]) AND (\"ultrasound\"[Title/Abstract] OR \"ultrasonography\"[Title/Abstract] OR \"sonography\"[Title/Abstract] OR \"CT\"[Title/Abstract] OR \"computed tomography\"[Title/Abstract] OR \"MRI\"[Title/Abstract] OR \"magnetic resonance\"[Title/Abstract] OR \"radiograph\"[Title/Abstract] OR \"imaging\"[Title/Abstract]) AND (\"case report\"[Title/Abstract] OR \"case presentation\"[Title/Abstract] OR \"a case of\"[Title/Abstract] OR \"we report\"[Title/Abstract] OR \"we present\"[Title/Abstract]) AND \"open access\"[Filter] AND 2017/01/01:2026/12/31[Date - Publication]",
+          "hits": 88,
+          "new_in_family": 88
+        },
+        "Q2_peds_neck_tumor": {
+          "query": "(\"rhabdomyosarcoma\"[ti] OR \"neuroblastoma\"[ti] OR \"teratoma\"[ti] OR \"infantile hemangioma\"[ti]) AND (\"neck\"[tiab] OR \"head and neck\"[tiab] OR \"cervical\"[tiab] OR \"parotid\"[tiab] OR \"orbit\"[tiab] OR \"orbital\"[tiab]) AND (\"child\"[tiab] OR \"children\"[tiab] OR \"pediatric\"[tiab] OR \"paediatric\"[tiab] OR \"infant\"[tiab] OR \"neonate\"[tiab] OR \"neonatal\"[tiab] OR \"newborn\"[tiab] OR \"boy\"[tiab] OR \"girl\"[tiab] OR \"adolescent\"[tiab]) AND (\"ultrasound\"[tiab] OR \"ultrasonography\"[tiab] OR \"sonography\"[tiab] OR \"CT\"[tiab] OR \"computed tomography\"[tiab] OR \"MRI\"[tiab] OR \"magnetic resonance\"[tiab] OR \"radiograph\"[tiab] OR \"imaging\"[tiab]) AND (\"case report\"[tiab] OR \"case presentation\"[tiab] OR \"a case of\"[tiab] OR \"we report\"[tiab] OR \"we present\"[tiab]) AND \"open access\"[filter] AND 2017:2026[PDAT]",
+          "pmc_query_translation": "(\"rhabdomyosarcoma\"[Title] OR \"neuroblastoma\"[Title] OR \"teratoma\"[Title] OR \"infantile hemangioma\"[Title]) AND (\"neck\"[Title/Abstract] OR \"head and neck\"[Title/Abstract] OR \"cervical\"[Title/Abstract] OR \"parotid\"[Title/Abstract] OR \"orbit\"[Title/Abstract] OR \"orbital\"[Title/Abstract]) AND (\"child\"[Title/Abstract] OR \"children\"[Title/Abstract] OR \"pediatric\"[Title/Abstract] OR \"paediatric\"[Title/Abstract] OR \"infant\"[Title/Abstract] OR \"neonate\"[Title/Abstract] OR \"neonatal\"[Title/Abstract] OR \"newborn\"[Title/Abstract] OR \"boy\"[Title/Abstract] OR \"girl\"[Title/Abstract] OR \"adolescent\"[Title/Abstract]) AND (\"ultrasound\"[Title/Abstract] OR \"ultrasonography\"[Title/Abstract] OR \"sonography\"[Title/Abstract] OR \"CT\"[Title/Abstract] OR \"computed tomography\"[Title/Abstract] OR \"MRI\"[Title/Abstract] OR \"magnetic resonance\"[Title/Abstract] OR \"radiograph\"[Title/Abstract] OR \"imaging\"[Title/Abstract]) AND (\"case report\"[Title/Abstract] OR \"case presentation\"[Title/Abstract] OR \"a case of\"[Title/Abstract] OR \"we report\"[Title/Abstract] OR \"we present\"[Title/Abstract]) AND \"open access\"[Filter] AND 2017/01/01:2026/12/31[Date - Publication]",
+          "hits": 78,
+          "new_in_family": 77
+        }
+      },
+      "unique_hits": 165,
+      "already_in_corpus": 6,
+      "candidates": 159,
+      "sheet": "revision/outputs/gapfill_v21/candidates_apdr_sched_0184.csv"
+    }
+  }
+}

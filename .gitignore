@@ -1,0 +1,28 @@
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+credentials*
+
+# runtime data (not distributed; see docs/data_layout.md)
+/data/
+*.db
+*.sqlite*
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# logs and misc
+*.log
+*.pid
+.DS_Store

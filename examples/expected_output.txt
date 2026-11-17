@@ -1,0 +1,6 @@
+case_id      caption rule       verifier   linked topics
+SYN0001_F1   rule_include       supported  Pulmonary embolism
+SYN0002_F2   uncertain_pending  supported  Brain abscess
+SYN0003_F1   rule_include       supported  Cholecystitis
+SYN0004_F1   rule_include       supported  Scaphoid fracture
+SYN0005_F1   rule_include       supported  Ovarian torsion
